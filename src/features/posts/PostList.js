@@ -6,6 +6,7 @@ import TimeAgo from "./TimeAgo";
 import Reaction from "./Reaction";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Comment } from "./Comment";
 
 const PostList = () => {
   let navigate = useNavigate();
@@ -19,6 +20,7 @@ const PostList = () => {
         <PostAuthor userId={post.userId} />
         <TimeAgo timestamp={post.date} />
         <Reaction post={post} />
+        <Comment post={post} />
       </div>
     </article>
   ))
