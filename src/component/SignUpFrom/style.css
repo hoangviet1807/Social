@@ -1,0 +1,40 @@
+.signup-wrapper {
+    display: flex;
+    width: 100%;
+    transition: all 0.2s ease-in;
+    opacity: 1;
+    height: 100vh;
+    align-items: center;
+  }
+  
+  .signup-wrapper-hide {
+    content-visibility: hidden;
+    transition: all 0.2s ease-in;
+    opacity: 0;
+  }
+  
+  .signup-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .background {
+    flex: 1;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .background {
+      flex: none;
+      display: none
+    }
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5% 5%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+  }
+  

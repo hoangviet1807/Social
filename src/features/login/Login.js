@@ -1,51 +1,64 @@
-import React, { useState } from 'react';
-import './style.css'
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import "./style.css";
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:3002/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => data.json())
-}
+import { SignUpForm } from "../../component/SignUpFrom";
+import { LoginForm } from "../../component/LoginForm";
+import { Alert, Button, Snackbar } from "@mui/material";
+import { useQuery } from "react-query";
+import { fetchUsers } from "../../services/services";
 
+// async function loginUser(credentials) {
+//   return fetch("http://localhost:3002/login", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(credentials),
+//   }).then((data) => data.json());
+// }
 
-export const Login = ({ setToken }) => {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
+export const Login = () => {
+  const { data } = useQuery("users", fetchUsers);
+  const [loginForm, setLoginForm] = useState(true);
+  const [open, setOpen] = useState(false);
 
-    const handleSubmit = async e => {
-        e.preventDefault();
-        const token = await loginUser({
-            username,
-            password
-        });
-        setToken(token);
-    }
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const SnackbarComponent = () => {
     return (
-        <div className="login-wrapper">
-            <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-    )
-}
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+          Create successfully
+        </Alert>
+      </Snackbar>
+    );
+  };
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-}
+  return (
+    <>
+      {SnackbarComponent()}
+      <LoginForm
+        loginForm={loginForm}
+        setLoginForm={setLoginForm}
+        data={data}
+      />
+      <SignUpForm
+        loginForm={loginForm}
+        setLoginForm={setLoginForm}
+        setOpenSnackBar={setOpen}
+        data={data}
+      />
+    </>
+  );
+};
+
+// Login.propTypes = {
+//   setToken: PropTypes.func.isRequired,
+// };
