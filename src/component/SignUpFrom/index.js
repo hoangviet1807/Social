@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import background from "../../assets/10808.jpg";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
+import { useMutation, useQueryClient } from "react-query";
+import { createUser } from "../../services/services";
 
 export const SignUpForm = ({
   loginForm,
@@ -11,6 +13,7 @@ export const SignUpForm = ({
   setOpenSnackBar,
   data,
 }) => {
+  const queryClient = useQueryClient()
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -21,18 +24,24 @@ export const SignUpForm = ({
   const [helpTextPassword, setHelpTextPassword] = useState("");
   const [helpTextPasswordConfirm, setHelpTextPasswordConfirm] = useState("");
 
-  console.log("data", data?.map((val) => val.username).includes(username));
+  const { mutate } = useMutation(createUser, {
+    onSuccess: () => {
+      setOpenSnackBar(true);
+      setLoginForm(true);
+      queryClient.invalidateQueries('users', { exact: true })
+    },
+    onError: () => {
+      setCheckUser(false)
+      setHelpTextUserName("Username already exist")
+    }
+  });
+
 
   const handleSubmit = (e) => {
     setCheckPassword(true);
     setCheckPasswordConfirm(true);
     setHelpTextPassword("");
     setHelpTextPasswordConfirm("");
-    if (data?.map((val) => val.username).includes(username)) {
-      setCheckUser(false);
-      setHelpTextUserName("Username already exists");
-      return false;
-    }
     if (password.length < 8) {
       setCheckPassword(false);
       setHelpTextPassword("Password must be at least 8 characters long");
@@ -48,12 +57,10 @@ export const SignUpForm = ({
       password: password,
       name: username,
     };
-    axios.post(`http://localhost:5000/user`, user).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
-    setOpenSnackBar(true);
-    setLoginForm(true);
+    mutate(user)
+
+
+
   };
 
   const handleSwitch = () => {

@@ -8,8 +8,10 @@ import "./App.css";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
 import { Login } from "./features/login/Login";
+import HomePage from "./features/HomePage";
+import { Route, Routes } from "react-router-dom";
 
-const socket = io.connect("http://localhost:3002");
+const socket = io.connect("http://localhost:8000");
 
 function App() {
   // const { token, setToken } = useToken();
@@ -47,7 +49,10 @@ function App() {
         :
         <Chat socket={socket} username={username} room={room} />
       } */}
-      <Login />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/homepage" element={<HomePage />} />
+      </Routes>
     </div>
   );
 }

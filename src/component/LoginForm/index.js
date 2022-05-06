@@ -54,7 +54,7 @@ export const LoginForm = ({ loginForm, setLoginForm, data }) => {
                   type={"password"}
                 />
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div>
                   <span>Remember me</span>
                   <Checkbox />
@@ -92,7 +92,7 @@ export const LoginForm = ({ loginForm, setLoginForm, data }) => {
           <img style={{ width: "100%" }} src={background} alt="login" />
           {/* ÁD */}
         </div>
-      </div>
+      </div >
     </>
   );
 };

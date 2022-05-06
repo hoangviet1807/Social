@@ -1,0 +1,155 @@
+:root {
+    --heigh-header: 60px
+}
+
+.container-chat {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.header-chat {
+    /* --heigh-header: 100px; */
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0 5px 10px;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+    justify-content: space-between;
+    height: 60px;
+    position: relative;
+}
+
+.info-user {
+    display: flex;
+    align-items: center;
+}
+
+.container-chat-form {
+    height: calc(100% - var(--heigh-header));
+    display: flex;
+    flex-direction: column;
+}
+
+.room {
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+.chat-form {
+    background: #f1f1f1;
+    height: 90%;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+    position: relative;
+}
+
+.footer-chat {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+}
+
+
+.message-content {
+    padding: 0 10px 0 10px;
+}
+
+.message-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.message-container::-webkit-scrollbar {
+    display: none;
+}
+
+.author {
+    display: flex;
+    /* justify-content: space-evenly; */
+    align-items: center;
+}
+
+.list-user-message {
+    padding: 10px 10px;
+}
+
+#other .list-user-message {
+    display: flex;
+}
+
+#other .messages {
+    display: flex;
+    flex-direction: row;
+}
+
+#other .message-content {
+    justify-content: flex-end;
+}
+
+#other .message-meta {
+    justify-content: flex-end;
+    margin-right: 5px;
+}
+
+
+#you .messages {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#you .message-content {
+    justify-content: flex-end;
+}
+
+#you .message-meta {
+    justify-content: flex-end;
+    margin-right: 5px;
+}
+
+#you .list-user-message {
+    flex-direction: row-reverse;
+}
+
+#you .author {
+    flex-direction: row-reverse;
+}
+
+#you .mess {
+    color: white;
+    background: green;
+    border-radius: 10px 0px 10px 10px;
+    padding: 10px;
+}
+
+#other .mess {
+    color: white;
+    background: green;
+    border-radius: 0px 10px 10px 10px;
+    padding: 10px;
+}
+
+/* 
+#you {
+    justify-content: flex-start;
+}
+
+#you .message-content {
+    justify-content: flex-start;
+}
+
+#you .message-meta {
+    justify-content: flex-start;
+    margin-left: 5px;
+} */
+
+
+
+
+/* .message-meta #author {
+    margin-left: 10px;
+    font-weight: bold;
+} */

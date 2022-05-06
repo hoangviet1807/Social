@@ -3,7 +3,7 @@ import "./style.css";
 
 import { SignUpForm } from "../../component/SignUpFrom";
 import { LoginForm } from "../../component/LoginForm";
-import { Alert, Button, Snackbar } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 import { useQuery } from "react-query";
 import { fetchUsers } from "../../services/services";
 
