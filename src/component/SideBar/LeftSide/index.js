@@ -23,26 +23,6 @@ const LeftSide = () => {
 
                 <div className='info'>
                     <div className='message'>
-                        <span>Name</span>
-                        <span style={{
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis"
-                        }}>Day la 1 tin nhan rat dai asdasd</span>
-                    </div>
-                    <div className='timestamp'>
-                        <span className='time'>4:20 PM</span>
-                    </div>
-                </div>
-
-            </div>
-            <div className='list-message'>
-                <div className='avatar'>
-                    <Avatar>H</Avatar>
-                </div>
-
-                <div className='info'>
-                    <div className='message'>
                         <span className='name'>Name</span>
                         <span style={{
                             whiteSpace: "nowrap",

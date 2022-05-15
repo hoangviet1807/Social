@@ -29,6 +29,7 @@
     flex: none;
     display: none
   }
+
   .login-form {
     display: flex;
     flex-direction: column;
@@ -36,4 +37,12 @@
     padding: 5% 5%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+}
+
+.warning {
+  display: flex;
+  align-items: center;
+  background: red;
+  padding: 10px;
+  color: white;
 }

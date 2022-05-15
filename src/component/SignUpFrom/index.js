@@ -3,7 +3,6 @@ import "./style.css";
 import PropTypes from "prop-types";
 import background from "../../assets/10808.jpg";
 import { Button, TextField } from "@mui/material";
-import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { createUser } from "../../services/services";
 
@@ -11,8 +10,9 @@ export const SignUpForm = ({
   loginForm,
   setLoginForm,
   setOpenSnackBar,
-  data,
+  setTitle
 }) => {
+
   const queryClient = useQueryClient()
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +28,7 @@ export const SignUpForm = ({
     onSuccess: () => {
       setOpenSnackBar(true);
       setLoginForm(true);
+      setTitle("Created successfully")
       queryClient.invalidateQueries('users', { exact: true })
     },
     onError: () => {

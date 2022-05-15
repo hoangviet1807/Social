@@ -38,7 +38,7 @@ function App() {
     //   {/* <AddPostFrom />
     //   <PostList /> */}
     // </main>
-    <div>
+    <div className="App">
       {/* {!showChat ?
         <div className='joinChatContainer'>
           <h3>Join A Chat</h3>

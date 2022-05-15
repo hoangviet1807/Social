@@ -1,17 +1,18 @@
-import { Avatar, createStyles, IconButton, InputAdornment, TextField } from '@mui/material'
+import { Avatar, IconButton, InputAdornment, TextField } from '@mui/material'
 import CallIcon from '@mui/icons-material/Call';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import InfoIcon from '@mui/icons-material/Info';
 import React, { useState } from 'react'
 import ScrollToBottom from "react-scroll-to-bottom";
-
 import './style.css'
 import SendIcon from '@mui/icons-material/Send';
+
 const Chat = () => {
     const [currentMessage, setCurrentMessage] = useState()
     const sendMessage = () => {
         console.log("HIHI");
     }
+
 
 
 
@@ -88,7 +89,9 @@ const Chat = () => {
                 </div>
 
                 <div className='footer-chat'>
-                    <TextField size='small' style={{ width: '90%' }} placeholder="Your message..."
+                    <TextField
+                        size='small' style={{ width: '90%' }} placeholder="Your message..."
+                        maxRows={5}
                         sx={{
                             fieldset: {
                                 borderRadius: '20px',
@@ -97,7 +100,8 @@ const Chat = () => {
                                 flexFlow: 'row wrap',
                                 alignItems: 'center',
                             }
-                        }} InputProps={{
+                        }}
+                        InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <IconButton>
