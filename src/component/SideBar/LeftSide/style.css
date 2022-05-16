@@ -13,6 +13,12 @@
     justify-content: center;
     overflow-y: clip;
     padding: 10px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.list-message:hover {
+    background-color: rgb(230, 230, 230);
 }
 
 .list-message span {

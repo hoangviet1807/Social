@@ -20,7 +20,9 @@ export const LoginForm = ({ loginForm, setLoginForm }) => {
   const [showWarning, setShowWarning] = useState(false)
 
   const { mutate } = useMutation(login, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      localStorage.setItem("username", username)
+      localStorage.setItem("token", username)
       navigate(`/homepage`);
     },
     onError: () => {
@@ -56,7 +58,7 @@ export const LoginForm = ({ loginForm, setLoginForm }) => {
       setCheckPassword(false)
       setHelpTextPassword("")
     }
-
+   
   };
 
 
