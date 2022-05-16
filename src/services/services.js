@@ -17,5 +17,15 @@ export const login = (data) => {
 
 export const getRoom = (user) => {
   return axios.get(`http://localhost:8080/room/${user}`,)
-    .then((response)=> response.data)
+    .then((response) => response.data)
+}
+
+export const getMessage = (roomId) => {
+  return axios.get(`http://localhost:8080/message/${roomId}`,)
+    .then((response) => response.data)
+}
+
+export const updateMessage = (data) => {
+  return axios.put(`http://localhost:8080/message/${data.roomId}`, data)
+    .then((response) => response.data)
 }

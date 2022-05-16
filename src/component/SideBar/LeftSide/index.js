@@ -4,16 +4,19 @@ import "./style.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "react-query";
 import { getRoom } from "../../../services/services";
-import { useDispatch, useSelector } from "react-redux";
-import { roomSelected, selectRoom } from "../../../redux/rooms";
+import { useDispatch } from "react-redux";
+import { roomSelected } from "../../../redux/rooms";
+import { socket } from "../../../config/socket";
 
 const LeftSide = () => {
   const user = localStorage.getItem("username");
   const { data, isLoading } = useQuery(["rooms"], () => getRoom(user), {});
   const dispatch = useDispatch();
-  const room = useSelector(selectRoom);
-
-  console.log("roomSelected", room);
+  const joinRoom = (id) => {
+    console.log("id", id);
+    dispatch(roomSelected(id))
+    socket.emit("join_room", id)
+  }
   return (
     <div>
       <div className="header">
@@ -36,7 +39,7 @@ const LeftSide = () => {
           <div
             key={val._id}
             className="list-message"
-            onClick={() => dispatch(roomSelected(val._id))}
+            onClick={() => joinRoom(val._id)}
           >
             <div className="avatar">
               <Avatar>{val.roomName.charAt(0)}</Avatar>

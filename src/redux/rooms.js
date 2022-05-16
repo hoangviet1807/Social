@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-let initialState = [];
+let initialState = {
+  groupSelected: ""
+}
 
 const roomSlice = createSlice({
   name: "room",
@@ -8,7 +10,7 @@ const roomSlice = createSlice({
     roomSelected: {
       reducer(state, action) {
         const roomSelected = action.payload;
-        state.push(roomSelected);
+        state.groupSelected = roomSelected
       },
     },
   },

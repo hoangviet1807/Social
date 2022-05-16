@@ -77,6 +77,10 @@
     padding: 10px 10px;
 }
 
+.messages {
+    align-items: center;
+}
+
 #other .list-user-message {
     display: flex;
 }

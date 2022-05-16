@@ -1,17 +1,32 @@
-import React, { useState } from "react";
-// import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from "react";
 import "./App.css";
-// import AddPostFrom from './features/posts/AddPostFrom';
-// import PostList from './features/posts/PostList';
-// import { Login } from './features/login/Login'
+
 import useToken from './app/useToken';
-import { io } from "socket.io-client";
-// import Chat from "./Chat";
 import { Login } from "./features/login/Login";
 import HomePage from "./features/HomePage";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userCurrent } from "./redux/user";
 
 function App() {
+  const navigate = useNavigate()
+  const { token } = useToken()
+  const dispatch = useDispatch()
+
+  const handleStoreUser = () => {
+    dispatch(userCurrent(token))
+  }
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/login')
+    }
+    else {
+      handleStoreUser()
+      navigate('/homepage')
+    }
+  }, [])
+
   return (
     <div className="App">
       {/* {!showChat ?
@@ -25,7 +40,8 @@ function App() {
         <Chat socket={socket} username={username} room={room} />
       } */}
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<HomePage />} />
       </Routes>
     </div>
